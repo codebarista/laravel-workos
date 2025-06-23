@@ -1,0 +1,17 @@
+*.log
+.DS_Store
+.env
+composer.lock
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/vendor
+Homestead.json
+Homestead.yaml
+Thumbs.db
