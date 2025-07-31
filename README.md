@@ -1,6 +1,9 @@
 # Laravel WorkOS
 
-### Roles, Permissions and Stripe Entitlements
+### User Roles, Permissions and Stripe Entitlements
+
+The roles and permissions implementation is heavily inspired by _Spatie Laravel Permission_. The additional Stripe
+entitlements are applied in the same way as permissions.
 
 ## 1. Installation
 
@@ -32,7 +35,7 @@ LARAVEL_WORKOS_ROUTES_LOGIN=login
 ### Publish config (optional)
 
 ```shell
- php artisan vendor:publish --tag="config" --provider="Codebarista\LaravelWorkos\LaravelWorkosServiceProvider"
+php artisan vendor:publish --tag="config" --provider="Codebarista\LaravelWorkos\LaravelWorkosServiceProvider"
 ```
 
 ## 3. Implementation
@@ -75,6 +78,14 @@ class EntryPolicy
 ```
 
 ### Stripe Product Entitlements
+
+#### Register Stripe customer for entitlements
+
+```shell
+php artisan codebarista:register-stripe-customer
+```
+
+#### Authorize with Stripe product entitlements
 
 ```php
 // e.g. use in Laravel gates
