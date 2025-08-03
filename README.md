@@ -2,8 +2,9 @@
 
 ### User Roles, Permissions and Stripe Entitlements
 
-The roles and permissions implementation is heavily inspired by _Spatie Laravel Permission_. The additional Stripe
-entitlements are applied in the same way as permissions.
+Authorize users with WorkOS roles and permissions, as well as subscribed Stripe entitlements. The roles and permissions
+implementation is heavily inspired by _Spatie Laravel Permission_. The additional Stripe entitlements are applied in the
+same way as permissions.
 
 ## 1. Installation
 
