@@ -8,12 +8,23 @@ trait HasEntitlements
 {
     public function entitlements(): Collection
     {
-        return collect(token_data_get(key: 'entitlements'));
+        return collect(workos_token_data_get(key: 'entitlements'));
+    }
+
+    public function hasExactEntitlements(string ...$entitlements): bool
+    {
+        return $this->hasAllEntitlements(...$entitlements) && $this->entitlements()->count() === count($entitlements);
     }
 
     public function hasAllEntitlements(string ...$entitlements): bool
     {
-        return $this->entitlements()->intersect($entitlements)->all() === $entitlements;
+        foreach ($entitlements as $entitlement) {
+            if (! $this->hasEntitlementTo($entitlement)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public function hasAnyEntitlement(string ...$entitlements): bool

@@ -8,17 +8,23 @@ trait HasRoles
 {
     public function roles(): Collection
     {
-        return collect(token_data_get(key: 'role'));
+        return collect(workos_token_data_get(key: 'role'));
     }
 
     public function hasExactRoles(string ...$roles): bool
     {
-        return $this->roles()->intersect($roles)->count() === count($roles);
+        return $this->hasAllRoles(...$roles) && $this->roles()->count() === count($roles);
     }
 
     public function hasAllRoles(string ...$roles): bool
     {
-        return $this->roles()->intersect($roles)->all() === $roles;
+        foreach ($roles as $role) {
+            if (! $this->hasRole($role)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public function hasAnyRole(string ...$roles): bool
