@@ -1,12 +1,12 @@
 <?php
 
-use Codebarista\LaravelWorkos\Services\TokenService;
+use Codebarista\LaravelWorkos\Services\WorkosService;
 
-if (! function_exists('token_data_get')) {
-    function token_data_get(string $key): array|string|int|null
+if (! function_exists('workos_token_data_get')) {
+    function workos_token_data_get(string $key): array|string|int|null
     {
-        if ($token = TokenService::getAccessToken()) {
-            return data_get($token, $key);
+        if ($claims = WorkosService::getTokenClaims()) {
+            return data_get($claims, $key);
         }
 
         return null;

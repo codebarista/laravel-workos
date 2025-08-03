@@ -2,18 +2,18 @@
 
 namespace Codebarista\LaravelWorkos\Listeners;
 
+use Codebarista\LaravelWorkos\Services\WorkosService;
 use Illuminate\Auth\Events\Logout;
-use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Facades\Cache;
 
 class UserEventSubscriber
 {
-    public function handleUserLogout(Logout $event): void
+    public function handleUserLogout(): void
     {
-        Cache::forget('laravel_workos_access_token');
+        Cache::forget(WorkosService::$workosTokenClaimsCacheKey);
     }
 
-    public function subscribe(Dispatcher $events): array
+    public function subscribe(): array
     {
         return [
             Logout::class => 'handleUserLogout',
